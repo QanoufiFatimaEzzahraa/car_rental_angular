@@ -1,14 +1,72 @@
-<div *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn">
-  <div class="custom-navbar">
-    <div class="navbar-title">
-      <a routerLink="/login">Car Rental Service</a>
-    </div>
+<div *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn && !isOnSignup">
+  <div class="home-container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Discover Your Perfect Ride</h1>
+        <p>Premium cars for rent at competitive prices</p>
+        <button class="cta-button" routerLink="/register">Get Started</button>
+      </div>
+    </section>
 
-    <div class="nav-links">
-      <a routerLink="/register"> Sign Up </a>
+    <!-- Features Section -->
+    <section class="features">
+      <h2>Why Choose Us</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fas fa-car"></i>
+          <h3>Wide Selection</h3>
+          <p>Choose from our diverse fleet of vehicles</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-dollar-sign"></i>
+          <h3>Best Prices</h3>
+          <p>Competitive rates and special offers</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-clock"></i>
+          <h3>24/7 Support</h3>
+          <p>Round-the-clock customer assistance</p>
+        </div>
+      </div>
+    </section>
 
-      <a routerLink="/login"> Login </a>
-    </div>
+    <!-- Popular Cars Section -->
+    <section class="popular-cars">
+      <h2>Popular Cars</h2>
+      <div class="car-grid">
+        <div class="car-card" *ngFor="let car of popularCars">
+          <img [src]="car.image" [alt]="car.name">
+          <div class="car-info">
+            <h3>{{car.name}}</h3>
+            <p class="price">${{car.price}}/day</p>
+            <button class="book-button" routerLink="/login">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Choose Your Car</h3>
+          <p>Browse our selection and find your perfect match</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Book & Pay</h3>
+          <p>Easy booking process with secure payment</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Enjoy Your Ride</h3>
+          <p>Pick up your car and start your journey</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
 
@@ -39,6 +97,8 @@
       <a routerLink="/customer/dashboard" routerLinkActive="active"> Dashboard </a>
 
       <a routerLink="/customer/my-bookings" routerLinkActive="active"> My Bookings </a>
+
+      <a routerLink="/customer/profile" routerLinkActive="active"> My profile </a>
 
       <a routerLink="#" routerLinkActive="active" (click)="logout()"> Logout </a>
     </div>

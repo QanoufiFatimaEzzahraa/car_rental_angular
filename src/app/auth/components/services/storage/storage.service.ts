@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+
 const PREFIX_TOKEN_KEY = 'car_rental'
 
 const TOKEN = `${PREFIX_TOKEN_KEY}.token`
@@ -23,6 +24,8 @@ export class StorageService {
   static getToken(): string | null {
     return localStorage.getItem(TOKEN)
   }
+
+
 
   static getUser(): any {
     return JSON.parse(localStorage.getItem(USER) || '{}')

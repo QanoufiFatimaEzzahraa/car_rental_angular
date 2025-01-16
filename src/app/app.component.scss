@@ -1,5 +1,5 @@
 .custom-navbar {
-  background: #2ecc71;
+  background: #ff4d4d;
   padding: 1rem 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -66,3 +66,291 @@
     }
   }
 }
+
+// Variables
+$primary-color: #ff4d4d;
+$secondary-color: #333;
+$background-light: #f8f9fa;
+$white: #fff;
+$max-width: 1200px;
+$border-radius: 10px;
+$transition-duration: 0.3s;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin section-padding {
+  padding: 80px 20px;
+}
+
+@mixin card-hover {
+  transition: transform $transition-duration ease;
+  &:hover {
+    transform: translateY(-10px);
+  }
+}
+
+@mixin section-title {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+  color: $secondary-color;
+}
+
+.home-container {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+// Hero Section
+.hero {
+  height: 80vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url('https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  @include flex-center;
+  text-align: center;
+  color: $white;
+
+  &-content {
+    max-width: 800px;
+    padding: 0 20px;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease;
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    animation: fadeInUp 1s ease 0.2s;
+  }
+}
+
+.cta-button {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  background: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform $transition-duration ease;
+  animation: fadeInUp 1s ease 0.4s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba($primary-color, 0.3);
+  }
+}
+
+// Features Section
+.features {
+  @include section-padding;
+  background: $background-light;
+
+  h2 {
+    @include section-title;
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+}
+
+.feature-card {
+  text-align: center;
+  padding: 30px;
+  background: $white;
+  border-radius: $border-radius;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  @include card-hover;
+
+  i {
+    font-size: 2.5rem;
+    color: $primary-color;
+    margin-bottom: 20px;
+  }
+}
+
+// Popular Cars Section
+.popular-cars {
+  @include section-padding;
+
+  h2 {
+    @include section-title;
+  }
+
+  .car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+}
+
+.car-card {
+  background: $white;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  @include card-hover;
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .car-info {
+    padding: 20px;
+    text-align: center;
+
+    h3 {
+      margin-bottom: 10px;
+      color: $secondary-color;
+    }
+
+    .price {
+      color: $primary-color;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.book-button {
+  padding: 10px 30px;
+  background: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all $transition-duration ease;
+
+  &:hover {
+    background: darken($primary-color, 5%);
+    transform: translateY(-2px);
+  }
+}
+
+// How It Works Section
+.how-it-works {
+  @include section-padding;
+  background: $background-light;
+
+  h2 {
+    @include section-title;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+}
+
+.step {
+  text-align: center;
+  padding: 30px;
+
+  &-number {
+    width: 50px;
+    height: 50px;
+    background: $primary-color;
+    color: $white;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: 1.5rem;
+    margin: 0 auto 20px;
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .hero {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
+  .features-grid,
+  .car-grid,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Modal Styles
+.modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: darken(#ff4d4d, 10%);
+}
+

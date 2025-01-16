@@ -1,0 +1,37 @@
+<div class="profile-container" *ngIf="!isLoading">
+  <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+    <div nz-row nzGutter="16">
+      <div nz-col [nzSpan]="8">
+        <label for="firstName">Prénom</label>
+        <input nz-input formControlName="firstName" id="firstName" placeholder="Prénom" />
+      </div>
+      <div nz-col [nzSpan]="8">
+        <label for="lastName">Nom</label>
+        <input nz-input formControlName="lastName" id="lastName" placeholder="Nom" />
+      </div>
+      <div nz-col [nzSpan]="8">
+        <label for="email">Email</label>
+        <input nz-input formControlName="email" id="email" placeholder="Email"  />
+      </div>
+    </div>
+
+    <div nz-row nzGutter="16">
+      <div nz-col [nzSpan]="8">
+        <label for="phoneNumber">Numéro de téléphone</label>
+        <input nz-input formControlName="phoneNumber" id="phoneNumber" placeholder="Numéro de téléphone" />
+      </div>
+      <div nz-col [nzSpan]="8">
+        <label for="address">Adresse</label>
+        <input nz-input formControlName="address" id="address" placeholder="Adresse" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button nz-button nzType="primary" [disabled]="profileForm.invalid">Mettre à jour</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="isLoading" class="loading-spinner">
+  <nz-spin nzSimple></nz-spin>
+</div>

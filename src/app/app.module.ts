@@ -9,10 +9,11 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { NzMessageModule } from 'ng-zorro-antd/message'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { NgZorroImportsModule } from './NgZorroImportsModule'
+import { NgZorroImportsModule } from './NgZorroImportsModule';
+import { PaymentComponent } from './modules/payment/payment.component'
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, PaymentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

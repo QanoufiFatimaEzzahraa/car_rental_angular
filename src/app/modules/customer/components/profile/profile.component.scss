@@ -1,21 +1,125 @@
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: #f3f4f6;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
+// Loading Spinner Styles
+.loading-spinner {
+  @apply fixed inset-0 flex items-center justify-center bg-white/80 z-50;
 }
 
+// Profile Image Hover Effect
+.profile-image-container {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  margin: 0 auto;
+
+  &:hover .upload-overlay {
+    opacity: 1;
+  }
+}
+
+.upload-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+// Form Animations
 .form-group {
-  margin-bottom: 15px;
+  position: relative;
+  margin-bottom: 1.5rem;
+
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
+    transform: translateY(-1.5rem) scale(0.85);
+    color: #0d9488;
+  }
 }
 
-button {
-  width: 100%;
+// Custom Input Styles
+input.form-input {
+  @apply w-full px-3 py-2 bg-transparent border-b-2 border-gray-300 focus:border-teal-500 transition-colors duration-300;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+// Responsive Grid Layout
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-container {
+    padding: 1rem;
+  }
+}
+
+// Success Message Animation
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.success-message {
+  animation: slideIn 0.3s ease-out;
+}
+
+// Error State Styles
+.error-state {
+  input {
+    @apply border-red-500;
+  }
+
+  label {
+    @apply text-red-500;
+  }
+
+  .error-message {
+    @apply text-red-500 text-sm mt-1;
+    animation: slideIn 0.3s ease-out;
+  }
+}
+
+/* Container pour le message de bienvenue */
+.welcome-container {
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+/* Message de bienvenue */
+.welcome-message {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2e8b57; /* Couleur verte, ajustez selon votre thème */
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Animation pour faire apparaître le message progressivement */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

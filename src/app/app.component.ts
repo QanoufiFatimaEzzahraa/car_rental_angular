@@ -10,6 +10,7 @@ import { Router, NavigationEnd  } from '@angular/router'
 export class AppComponent {
   title = 'car-rental-angular'
   isOnSignup = false;
+  isOnLogin = false;
   isCustomerLoggedIn: boolean = StorageService.isCustomerLoggedIn()
   isAdminLoggedIn: boolean = StorageService.isAdminLoggedIn()
 
@@ -43,6 +44,7 @@ export class AppComponent {
       }
       if (event instanceof NavigationEnd) {
         this.isOnSignup = event.url === '/register';
+        this.isOnLogin = event.url === '/login';
       }
     })
   }

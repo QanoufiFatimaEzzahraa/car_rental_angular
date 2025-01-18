@@ -1,0 +1,14 @@
+<div class="payment-container">
+  <h2>Paiement</h2>
+  <div id="card-element"></div>
+  <button [disabled]="isProcessing" (click)="pay(500, 'usd')">
+    {{ isProcessing ? 'Traitement...' : 'Payer 5.00 USD' }}
+  </button>
+
+  <div *ngIf="paymentSuccess" class="success-message">
+    Paiement réussi ! Merci pour votre réservation.
+  </div>
+  <div *ngIf="paymentError" class="error-message">
+    {{ paymentError }}
+  </div>
+</div>

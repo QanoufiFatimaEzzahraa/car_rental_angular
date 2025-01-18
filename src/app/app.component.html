@@ -1,4 +1,4 @@
-<div *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn && !isOnSignup">
+<div *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn && !isOnSignup && !isOnLogin">
   <div class="home-container">
     <!-- Hero Section -->
     <section class="hero">
@@ -69,6 +69,7 @@
     </section>
   </div>
 </div>
+
 
 <div *ngIf="isAdminLoggedIn">
   <div class="custom-navbar">

@@ -1,37 +1,119 @@
-<div class="profile-container" *ngIf="!isLoading">
-  <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
-    <div nz-row nzGutter="16">
-      <div nz-col [nzSpan]="8">
-        <label for="firstName">Prénom</label>
-        <input nz-input formControlName="firstName" id="firstName" placeholder="Prénom" />
-      </div>
-      <div nz-col [nzSpan]="8">
-        <label for="lastName">Nom</label>
-        <input nz-input formControlName="lastName" id="lastName" placeholder="Nom" />
-      </div>
-      <div nz-col [nzSpan]="8">
-        <label for="email">Email</label>
-        <input nz-input formControlName="email" id="email" placeholder="Email"  />
-      </div>
+<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12 bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="relative py-3 sm:max-w-4xl sm:mx-auto w-full px-4">
+    <div class="absolute inset-0 bg-gradient-to-r from-teal-300 to-teal-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
     </div>
 
-    <div nz-row nzGutter="16">
-      <div nz-col [nzSpan]="8">
-        <label for="phoneNumber">Numéro de téléphone</label>
-        <input nz-input formControlName="phoneNumber" id="phoneNumber" placeholder="Numéro de téléphone" />
-      </div>
-      <div nz-col [nzSpan]="8">
-        <label for="address">Adresse</label>
-        <input nz-input formControlName="address" id="address" placeholder="Adresse" />
+    <div class="relative bg-white shadow-lg sm:rounded-3xl px-4 py-10 sm:p-20">
+      <div class="max-w-3xl mx-auto">
+        <!-- Loading Spinner -->
+        <div *ngIf="isLoading" class="absolute inset-0 flex items-center justify-center bg-white/80 rounded-3xl">
+          <nz-spin nzSimple></nz-spin>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="profile-container" *ngIf="!isLoading">
+          <!-- Avatar Section -->
+          <div class="flex flex-col items-center mb-8">
+            <div class="relative group">
+              <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-teal-500 shadow-lg">
+                <img
+                  [src]="avatar"
+                  alt="Profile"
+                  class="w-full h-full object-cover"
+                >
+              </div>
+              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <label for="profile-upload" class="cursor-pointer bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </label>
+                <input type="file" id="profile-upload" class="hidden" accept="image/*" (change)="onImageUpload($event)">
+              </div>
+            </div>
+            <h2 class="mt-4 text-2xl font-bold text-gray-800">Mon Profil</h2>
+          </div>
+
+          <!-- Profile Form -->
+          <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" class="space-y-6">
+            <!-- Personal Information -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- First Name -->
+              <div class="relative group">
+                <input id="firstName" type="text"
+                  class="peer w-full h-10 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-teal-600 transition-colors duration-300"
+                  placeholder="Prénom" formControlName="firstName" />
+                <label for="firstName"
+                  class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-teal-600 peer-focus:text-sm">
+                  Prénom
+                </label>
+              </div>
+
+              <!-- Last Name -->
+              <div class="relative group">
+                <input id="lastName" type="text"
+                  class="peer w-full h-10 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-teal-600 transition-colors duration-300"
+                  placeholder="Nom" formControlName="lastName" />
+                <label for="lastName"
+                  class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-teal-600 peer-focus:text-sm">
+                  Nom
+                </label>
+              </div>
+
+              <!-- Email -->
+              <div class="relative group">
+                <input id="email" type="email"
+                  class="peer w-full h-10 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-teal-600 transition-colors duration-300"
+                  placeholder="Email" formControlName="email" />
+                <label for="email"
+                  class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-teal-600 peer-focus:text-sm">
+                  Email
+                </label>
+              </div>
+
+              <!-- Phone Number -->
+              <div class="relative group">
+                <input id="phoneNumber" type="tel"
+                  class="peer w-full h-10 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-teal-600 transition-colors duration-300"
+                  placeholder="Numéro de téléphone" formControlName="phoneNumber" />
+                <label for="phoneNumber"
+                  class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-teal-600 peer-focus:text-sm">
+                  Numéro de téléphone
+                </label>
+              </div>
+
+              <!-- Address - Full Width -->
+              <div class="relative group md:col-span-2">
+                <input id="address" type="text"
+                  class="peer w-full h-10 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-teal-600 transition-colors duration-300"
+                  placeholder="Adresse" formControlName="address" />
+                <label for="address"
+                  class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-teal-600 peer-focus:text-sm">
+                  Adresse
+                </label>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-center pt-6">
+              <button type="submit"
+                class="px-8 py-3 rounded-lg bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium
+                       transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg
+                       focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50
+                       disabled:opacity-50 disabled:cursor-not-allowed"
+                [disabled]="profileForm.invalid">
+                <span class="flex items-center space-x-2">
+                  <span>Mettre à jour</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-
-    <div class="actions">
-      <button nz-button nzType="primary" [disabled]="profileForm.invalid">Mettre à jour</button>
-    </div>
-  </form>
-</div>
-
-<div *ngIf="isLoading" class="loading-spinner">
-  <nz-spin nzSimple></nz-spin>
+  </div>
 </div>

@@ -1,5 +1,5 @@
 .custom-navbar {
-  background: #ff4d4d;
+  background: #38b2ac; // Changement de la couleur de fond en vert
   padding: 1rem 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -68,7 +68,7 @@
 }
 
 // Variables
-$primary-color: #ff4d4d;
+$primary-color: #38b2ac; // Changement de la couleur principale en vert
 $secondary-color: #333;
 $background-light: #f8f9fa;
 $white: #fff;
@@ -342,7 +342,7 @@ $transition-duration: 0.3s;
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: #ff4d4d;
+  background-color: #38b2ac; // Changement de couleur de fond en vert
   color: white;
   border: none;
   padding: 10px;
@@ -351,6 +351,5 @@ $transition-duration: 0.3s;
 }
 
 .close-btn:hover {
-  background-color: darken(#ff4d4d, 10%);
+  background-color: darken(#38b2ac, 10%); // Changement de couleur au survol
 }
-

@@ -128,3 +128,10 @@ table {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+// Définition du mixin flex-center
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -1,0 +1,111 @@
+<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12 bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-teal-300 to-teal-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+    </div>
+
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-md mx-auto">
+        <div class="payment-header">
+          <h2 class="text-3xl font-bold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+            Processus de paiement
+          </h2>
+          <p class="mt-2 text-gray-600">Entrez vos informations de paiement en toute sécurité</p>
+        </div>
+
+        <form (ngSubmit)="processPayment()" class="payment-form">
+          <div class="form-group">
+            <div class="relative">
+              <input
+                type="text"
+                id="cardNumber"
+                [(ngModel)]="cardNumber"
+                name="cardNumber"
+                class="peer w-full h-10 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-teal-600 transition-colors duration-300"
+                placeholder="Numéro de carte"
+                required
+              />
+              <label
+                for="cardNumber"
+                class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-teal-600 peer-focus:text-sm"
+              >
+                Numéro de la carte
+              </label>
+              <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="expiryDate"
+                  [(ngModel)]="expiryDate"
+                  name="expiryDate"
+                  class="peer w-full h-10 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-teal-600 transition-colors duration-300"
+                  placeholder="MM/AA"
+                  required
+                />
+                <label
+                  for="expiryDate"
+                  class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-teal-600 peer-focus:text-sm"
+                >
+                  Date d'expiration
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="cvv"
+                  [(ngModel)]="cvv"
+                  name="cvv"
+                  class="peer w-full h-10 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-teal-600 transition-colors duration-300"
+                  placeholder="123"
+                  required
+                />
+                <label
+                  for="cvv"
+                  class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-teal-600 peer-focus:text-sm"
+                >
+                  Code de sécurité (CVV)
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="payment-actions">
+            <button
+              type="submit"
+              class="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium
+                     transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg
+                     focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+            >
+              <span class="flex items-center justify-center">
+                <span>Payer maintenant</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </form>
+
+        <div class="messages">
+          <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

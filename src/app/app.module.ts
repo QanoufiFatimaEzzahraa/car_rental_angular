@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { CustomerModule } from './modules/customer/customer.module';  // Importer CustomerModule
+
 import { LoginComponent } from './auth/components/login/login.component'
 import { SignupComponent } from './auth/components/signup/signup.component'
 import { ReactiveFormsModule } from '@angular/forms'
@@ -10,13 +12,13 @@ import { HttpClientModule } from '@angular/common/http'
 import { NzMessageModule } from 'ng-zorro-antd/message'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgZorroImportsModule } from './NgZorroImportsModule';
-import { PaymentComponent } from './modules/payment/payment.component'
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, PaymentComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CustomerModule,
     ReactiveFormsModule,
     HttpClientModule,
     NzMessageModule,

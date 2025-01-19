@@ -1,8 +1,18 @@
-<nz-spin [nzSpinning]="isSpinning">
+<<!--<nz-spin [nzSpinning]="isSpinning">
   <div class="p-6">
     <div *ngFor="let booking of bookings"
       class="flex bg-slate-400 p-4 rounded-lg mb-4 shadow-md items-center justify-between">
-      <div>{{booking.id}} - {{booking.bookCarStatus}}</div>
+      <div class="card">
+        <p><strong>ID Réservation:</strong> {{ booking.id }}</p>
+        <p><strong>Date de début:</strong> {{ booking.fromDate | date: 'dd/MM/yyyy' }}</p>
+        <p><strong>Date de fin:</strong> {{ booking.toDate | date: 'dd/MM/yyyy' }}</p>
+        <p><strong>Nombre de jours:</strong> {{ booking.days }}</p>
+        <p><strong>Prix par jour:</strong> {{ booking.pricePerDay }} MAD</p>
+        <p><strong>Prix total:</strong> {{ booking.price}} MAD</p>
+        <p><strong>Statut:</strong> {{ booking.bookCarStatus }}</p>
+        <p><strong>Utilisateur:</strong> {{ booking.username }}</p>
+        <p><strong>Email:</strong> {{ booking.email }}</p>
+      </div>
 
       <div *ngIf="booking.bookCarStatus == 'PENDING'">
         <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
@@ -17,4 +27,125 @@
       </div>
     </div>
   </div>
-</nz-spin>
+</nz-spin> -->
+<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12 bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="relative py-3 sm:max-w-4xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-teal-300 to-teal-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-4xl mx-auto">
+        <div class="booking-header">
+          <h2 class="text-3xl font-bold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+          reservations
+          </h2>
+          <p class="mt-2 text-gray-600">Manage  clients reservations</p>
+        </div>
+
+        <nz-spin [nzSpinning]="isSpinning">
+          <div class="bookings-container">
+            <div *ngFor="let booking of bookings" class="booking-card">
+              <div class="booking-status" [ngClass]="booking.bookCarStatus.toLowerCase()">
+                {{ booking.bookCarStatus }}
+              </div>
+
+              <div class="booking-content">
+                <div class="booking-header">
+                  <h3>Reservation #{{ booking.id }}</h3>
+                  <div class="booking-dates">
+                    <div class="date-item">
+                      <span class="date-label">From</span>
+                      <span class="date-value">{{ booking.fromDate | date:'shortDate' }}</span>
+                    </div>
+                    <div class="date-separator">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <div class="date-item">
+                      <span class="date-label">To</span>
+                      <span class="date-value">{{ booking.toDate | date:'shortDate' }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="booking-details">
+                  <div class="detail-item">
+                    <span class="detail-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                    <span class="detail-label">Price Per Day</span>
+                    <span class="detail-value">{{ booking.pricePerDay}} MAD</span>
+                  </div>
+
+                  <div class="detail-item">
+                    <span class="detail-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                    <span class="detail-label">Total Price</span>
+                    <span class="detail-value highlight">{{ booking.price}} MAD</span>
+                  </div>
+
+                  <div class="detail-item">
+                    <span class="detail-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                    <span class="detail-label">Duration</span>
+                    <span class="detail-value">{{ booking.days }} jours</span>
+                  </div>
+                </div>
+
+                <!-- Conditionally display the approval/rejection buttons -->
+                <div *ngIf="booking.bookCarStatus == 'PENDING'">
+                  <!-- Bouton Approve -->
+                  <button
+                    style="margin-left: 10px;"
+                    class="px-4 py-2 text-white bg-green-500 hover:bg-green-600 rounded-full text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-green-300 transition ease-in-out duration-150"
+                    (click)="changeBookingStatus(booking.id, 'Approve')">
+                    Approve
+                  </button>
+
+                  <!-- Bouton Reject -->
+                  <button
+                    style="margin-left: 10px;"
+                    class="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-full text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-red-300 transition ease-in-out duration-150"
+                    (click)="changeBookingStatus(booking.id, 'Reject')">
+                    Reject
+                  </button>
+                </div>
+
+
+                <div class="booking-footer">
+                  <div class="user-info">
+                    <span class="user-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                    <span class="user-name">{{ booking.username }}</span>
+                    <span class="user-email">{{ booking.email }}</span>
+                  </div>
+                  <div class="car-info">
+                    <span class="car-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                        <path d="M3 4a1 1 0 00-1 1v2a1 1 0 001 1h1v7a1 1 0 001 1h11a1 1 0 001-1V8h1a1 1 0 001-1V5a1 1 0 00-1-1h-1l-.387-2.253A2 2 0 0014.69 0H5.31a2 2 0 00-1.924 1.747L3 4H2zm11.41-.5h-3.63l.25-1.5h3.13l.25 1.5z" />
+                      </svg>
+                    </span>
+                    <span class="car-name"> car#{{ booking.carId }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nz-spin>
+      </div>
+    </div>
+  </div>
+</div>

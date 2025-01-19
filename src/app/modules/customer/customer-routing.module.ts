@@ -4,7 +4,7 @@ import { CustomerDashboardComponent } from './components/customer-dashboard/cust
 import { BookCarComponent } from './components/book-car/book-car.component'
 import { MyBookingsComponent } from './components/my-bookings/my-bookings.component'
 import { ProfileComponent } from './components/profile/profile.component'
-
+import { PaymentComponent } from './components/payment/payment.component'
 
 
 const routes: Routes = [
@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'book/:id', component: BookCarComponent },
   { path: 'my-bookings', component: MyBookingsComponent },
   { path: 'profile', component: ProfileComponent }, // Route pour le profil
+  { path: 'payment', component: PaymentComponent }
 
 ]
 

@@ -1,0 +1,143 @@
+// Variables
+$primary-color: #0d9488;
+$primary-light: #14b8a6;
+$error-color: #ef4444;
+$success-color: #10b981;
+$text-primary: #1f2937;
+$text-secondary: #6b7280;
+$transition-duration: 0.3s;
+
+.payment-header {
+  margin-bottom: 2rem;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.payment-form {
+  margin-top: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+
+  .card-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-secondary;
+    transition: color $transition-duration ease;
+  }
+
+  input:focus + label + .card-icon {
+    color: $primary-color;
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.payment-actions {
+  margin-top: 2rem;
+
+  button {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    &:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    svg {
+      transition: transform $transition-duration ease;
+    }
+
+    &:hover svg {
+      transform: rotate(15deg);
+    }
+  }
+}
+
+.messages {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.success-message {
+  color: $success-color;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: rgba($success-color, 0.1);
+  border: 1px solid rgba($success-color, 0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+.error-message {
+  color: $error-color;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: rgba($error-color, 0.1);
+  border: 1px solid rgba($error-color, 0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Input focus animations
+input:focus {
+  & + label {
+    color: $primary-color;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .payment-header {
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+}

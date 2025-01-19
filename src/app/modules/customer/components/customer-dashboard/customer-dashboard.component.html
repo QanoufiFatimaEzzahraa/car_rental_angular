@@ -1,6 +1,6 @@
 
 <div class="car-list-container">
- 
+
   <div class="car-card" *ngFor="let car of cars">
     <div class="car-content">
       <div class="car-image-container">
@@ -12,7 +12,7 @@
         <p class="car-description">{{car.description}}</p>
 
         <div class="car-specs">
-          <span>Price per day:<b>${{car.pricePerDay}}</b></span>
+          <span>Price per day:<b>{{car.pricePerDay}} MAD</b></span>
           <span>License Plate:<b>{{car.licensePlate}}</b></span>
           <span>Year:<b>{{car.year}}</b></span>
         </div>

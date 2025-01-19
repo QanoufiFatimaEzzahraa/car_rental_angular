@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { RouterModule } from '@angular/router';
+import { RouterModule} from '@angular/router';
 
 import { CustomerRoutingModule } from './customer-routing.module'
 import { CustomerDashboardComponent } from './components/customer-dashboard/customer-dashboard.component'
@@ -9,9 +9,11 @@ import { BookCarComponent } from './components/book-car/book-car.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyBookingsComponent } from './components/my-bookings/my-bookings.component';
 import { ProfileComponent } from './components/profile/profile.component'
+import { PaymentComponent } from './components/payment/payment.component'
+
 
 @NgModule({
-  declarations: [CustomerDashboardComponent, BookCarComponent, MyBookingsComponent, ProfileComponent],
+  declarations: [CustomerDashboardComponent, BookCarComponent, MyBookingsComponent, ProfileComponent, PaymentComponent],
   imports: [
     RouterModule,
     CommonModule,

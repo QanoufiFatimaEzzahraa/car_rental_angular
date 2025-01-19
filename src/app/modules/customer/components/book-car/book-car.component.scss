@@ -10,192 +10,339 @@ $transition-duration: 0.3s;
 
 // Styles
 .car-details-container {
-  min-height: 60vh;
-  padding: 2rem;
-  background: linear-gradient(135deg, $background-color 0%, darken($background-color, 5%) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+min-height: 60vh;
+padding: 2rem;
+background: linear-gradient(135deg, $background-color 0%, darken($background-color, 5%) 100%);
+display: flex;
+align-items: center;
+justify-content: center;
 
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+@media (max-width: 768px) {
+padding: 1rem;
+}
 }
 
 .car-card {
-  width: 100%;
-  max-width: 800px;
-  background: $card-background;
-  border-radius: $border-radius;
-  overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-              0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  transform: translateY(0);
-  transition: transform $transition-duration ease-in-out;
+width: 100%;
+max-width: 800px;
+background: $card-background;
+border-radius: $border-radius;
+overflow: hidden;
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+0 10px 10px -5px rgba(0, 0, 0, 0.04);
+transform: translateY(0);
+transition: transform $transition-duration ease-in-out;
 
-  &:hover {
-    transform: translateY(-5px);
-  }
+&:hover {
+transform: translateY(-5px);
+}
 }
 
 .image-container {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  position: relative;
+width: 100%;
+height: 300px;
+overflow: hidden;
+position: relative;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-  }
+&::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+height: 100px;
+}
 
-  @media (max-width: 768px) {
-    height: 100px;
-  }
+@media (max-width: 768px) {
+height: 100px;
+}
 }
 
 .car-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform $transition-duration ease;
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform $transition-duration ease;
 
-  &:hover {
-    transform: scale(1.05);
-  }
+&:hover {
+transform: scale(1.05);
+}
 }
 
 .car-info {
-  padding: 1.5rem;
+padding: 1.5rem;
 
-  @media (max-width: 600px) {
-    padding: 1rem;
-  }
+@media (max-width: 600px) {
+padding: 1rem;
+}
 }
 
 .car-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: $primary-color;
-  margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
+font-size: 1.5rem;
+font-weight: 700;
+color: $primary-color;
+margin-bottom: 1rem;
+position: relative;
+display: inline-block;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 0;
-    width: 50%;
-    height: 2px;
-    background: linear-gradient(to right, $primary-color, transparent);
-    transition: width $transition-duration ease;
-  }
+&::after {
+content: '';
+position: absolute;
+bottom: -0.5rem;
+left: 0;
+width: 50%;
+height: 2px;
+background: linear-gradient(to right, $primary-color, transparent);
+transition: width $transition-duration ease;
+}
 
-  &:hover::after {
-    width: 100%;
-  }
+&:hover::after {
+width: 100%;
+}
 }
 
 .car-description {
-  color: $text-secondary;
-  line-height: 1.6;
+color: $text-secondary;
+line-height: 1.6;
 }
 
 .car-specs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1rem;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+gap: 1rem;
 }
 
 .spec-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.5rem 0.5rem; // Réduction du padding vertical et horizontal
-  height: auto; // Ajustement automatique basé sur le contenu
-  min-height: 50px; // Fixer une hauteur minimale pour un look uniforme (optionnel)
-  background: lighten($background-color, 2%);
-  border-radius: 0.25rem;
-  transition: transform $transition-duration ease;
+display: flex;
+flex-direction: column;
+gap: 0.25rem;
+padding: 0.5rem 0.5rem; // Réduction du padding vertical et horizontal
+height: auto; // Ajustement automatique basé sur le contenu
+min-height: 50px; // Fixer une hauteur minimale pour un look uniforme (optionnel)
+background: lighten($background-color, 2%);
+border-radius: 0.25rem;
+transition: transform $transition-duration ease;
 
-  &:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+&:hover {
+transform: translateY(-2px);
+background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
 
-    .spec-label,
-    .spec-value {
-      color: white;
-    }
-  }
+
+.spec-label,
+.spec-value {
+  color: white;
+}
+}
 }
 
 .spec-label {
-  font-size: 0.75rem; // Petite taille de police pour économiser de l'espace
-  color: $text-secondary;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+font-size: 0.75rem; // Petite taille de police pour économiser de l'espace
+color: $text-secondary;
+text-transform: uppercase;
+letter-spacing: 0.05em;
 }
 
 .spec-value {
-  font-size: 1rem; // Taille de police ajustée pour un rendu compact
-  font-weight: 600;
-  color: $text-primary;
+font-size: 1rem; // Taille de police ajustée pour un rendu compact
+font-weight: 600;
+color: $text-primary;
 }
 
-
 .action-container {
-  padding: 1.2rem;
-  display: flex;
-  justify-content: center;
+padding: 1.2rem;
+display: flex;
+justify-content: center;
 }
 
 .book-button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: white;
-  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all $transition-duration ease;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+padding: 1rem 1.5rem;
+font-size: 1rem;
+font-weight: 600;
+color: white;
+background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+border: none;
+border-radius: 0.5rem;
+cursor: pointer;
+transition: all $transition-duration ease;
 
-  &:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 10px 15px -3px rgba($primary-color, 0.3);
-  }
+&:hover {
+transform: translateY(-2px) scale(1.02);
+box-shadow: 0 10px 15px -3px rgba($primary-color, 0.3);
+}
 
-  &:active {
-    transform: translateY(0) scale(0.98);
-  }
+&:active {
+transform: translateY(0) scale(0.98);
+}
 
-  .button-icon {
-    width: 1rem;
-    height: 1rem;
-    transition: transform $transition-duration ease;
-  }
+.button-icon {
+width: 1rem;
+height: 1rem;
+transition: transform $transition-duration ease;
+}
 
-  &:hover .button-icon {
-    transform: rotate(180deg);
-  }
+&:hover .button-icon {
+transform: rotate(180deg);
+}
 }
 
 // Responsive Design
 @media (max-width: 600px) {
-  .car-specs {
-    grid-template-columns: 1fr;
-  }
+.car-specs {
+grid-template-columns: 1fr;
+}
 
-  .book-button {
-    width: 100%;
-    justify-content: center;
+.book-button {
+width: 100%;
+justify-content: center;
+}
+}
+
+/* Form styling */
+.action-container {
+padding: 20px;
+background-color: #f9f9f9;
+border-radius: 8px;
+margin-top: 20px;
+}
+
+.form-item {
+display: flex;
+flex-direction: column;
+margin-bottom: 15px;
+}
+
+.form-item label {
+font-size: 14px;
+font-weight: 500;
+color: #333;
+margin-bottom: 5px;
+}
+
+.form-item input {
+padding: 12px;
+font-size: 14px;
+color: #333;
+background-color: #f9f9f9;
+border: 1px solid #ddd;
+border-radius: 8px;
+outline: none;
+transition: all 0.3s ease;
+}
+
+.form-item input:focus {
+border-color: #4CAF50;
+box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+#numberOfDays {
+font-weight: 600;
+text-align: center;
+background-color: #f2f2f2;
+color: #888;
+padding: 12px;
+border: 1px solid #ddd;
+border-radius: 8px;
+}
+
+/* New styles for horizontal alignment /
+.form-row {
+display: flex;
+gap: 20px; / Adjust the space between inputs /
+flex-wrap: wrap; / Allow wrapping on smaller screens */
+
+.form-item {
+flex: 1;
+min-width: 150px; /* Ensures the inputs don't get too small */
+}
+
+.reservation-confirmed-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #e1f5f1, #b2dfdb);
+
+  .reservation-card {
+    background-color: white;
+    border-radius: 1.5rem;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+      margin-bottom: 2rem;
+      h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #00796b;
+        background: linear-gradient(to right, #00bfae, #00796b);
+        -webkit-background-clip: text;
+        color: transparent;
+        letter-spacing: 1px;
+        animation: fadeInUp 1s ease-out;
+      }
+    }
+
+    .card-info {
+      margin-bottom: 2rem;
+      p {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        strong {
+          color: #00796b;
+          display: inline; /* Ajouté pour éviter le décalage */
+          margin-left: 0.2rem; /* Légère marge pour espacer le texte normal du texte en gras */
+        }
+      }
+    }
+
+    .payment-button-container {
+      button {
+        background: linear-gradient(to right, #00bfae, #00796b);
+        padding: 1.2rem 2.5rem;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: white;
+        border-radius: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease;
+
+        &:hover {
+          background: linear-gradient(to right, #00796b, #00bfae);
+          transform: scale(1.05);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 4px rgba(0, 191, 174, 0.5);
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

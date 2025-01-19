@@ -1,7 +1,7 @@
-<div class="car-details-container" *ngIf="car">
+<div class="car-details-container" *ngIf="!bookingDetails && car" >
   <div class="car-card">
     <div class="image-container">
-      <img class="car-image" [src]="car.processedImage" [alt]="car.brand + ' ' + car.model">
+      <img class="car-image" [src]="car.processedImage" >
     </div>
 
     <div class="car-info">
@@ -12,7 +12,7 @@
       <div class="car-specs">
         <div class="spec-item">
           <span class="spec-label">Price Per Day</span>
-          <span class="spec-value">${{car.pricePerDay}}</span>
+          <span class="spec-value">{{car.pricePerDay}} MAD</span>
         </div>
 
         <div class="spec-item">
@@ -27,13 +27,60 @@
       </div>
     </div>
 
+    <!-- Form for booking a car -->
     <div class="action-container">
-      <button class="book-button" (click)="bookACar(validateForm.value)">
-        <span>Book Now</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="button-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-        </svg>
-      </button>
+      <form [formGroup]="validateForm" (ngSubmit)="bookACar(validateForm.value)">
+        <div class="form-item">
+          <label for="fromDate">From Date:</label>
+          <input id="fromDate" type="date" formControlName="fromDate" [min]="today" />
+        </div>
+
+        <div class="form-item">
+          <label for="toDate">To Date:</label>
+          <input id="toDate" type="date" formControlName="toDate" [min]="today" />
+        </div>
+
+        <div class="form-item">
+          <label for="numberOfDays">Number of Days:</label>
+          <input id="numberOfDays" type="text" [value]="numberOfDays" readonly />
+        </div>
+
+        <button class="book-button" [disabled]="validateForm.invalid" >
+          <span>Book Now</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="button-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+        </button>
+      </form>
     </div>
   </div>
 </div>
+
+<div *ngIf="bookingDetails">
+  <div class="reservation-confirmed-container">
+    <div class="reservation-card">
+      <div class="card-header">
+        <h2>Confirmed booking
+        </h2>
+      </div>
+
+      <div class="card-info">
+        <p><strong>Car:</strong> {{ bookingDetails.carName }}</p>
+        <p><strong>Reservation dates:</strong> Du {{ bookingDetails.fromDate }} au {{ bookingDetails.toDate }}</p>
+        <p><strong>Number of days</strong> {{ bookingDetails.days }}</p>
+        <p><strong>Price per day:</strong> {{ bookingDetails.pricePerDay}} MAD</p>
+        <p><strong>Final price:</strong> {{ bookingDetails.price}} MAD</p>
+      </div>
+
+      <div class="payment-button-container">
+        <button (click)="initiatePayment(this.bookingDetails)">
+          Proceed to payment
+
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

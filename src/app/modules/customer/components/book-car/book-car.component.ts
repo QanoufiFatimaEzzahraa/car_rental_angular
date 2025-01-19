@@ -10,7 +10,7 @@ const DATE_FORMAT = 'MM-DD-YYYY'
 @Component({
   selector: 'app-book-car',
   templateUrl: './book-car.component.html',
-  styleUrl: './book-car.component.scss'
+  styleUrls: ['./book-car.component.scss']
 })
 export class BookCarComponent {
   constructor(
@@ -25,6 +25,10 @@ export class BookCarComponent {
   car: any
   validateForm!: FormGroup
   isSpinning: boolean = false
+  today: string = new Date().toISOString().split('T')[0] // Get today's date in YYYY-MM-DD format
+  numberOfDays: number = 0
+
+  bookingDetails: any;
 
   ngOnInit() {
     this.validateForm = this.fb.group({
@@ -32,32 +36,81 @@ export class BookCarComponent {
       fromDate: [null, Validators.required]
     })
 
+    // Listen for changes to the date fields
+    this.validateForm.get('fromDate')?.valueChanges.subscribe(() => {
+      this.onDateChange()
+    })
+
+    this.validateForm.get('toDate')?.valueChanges.subscribe(() => {
+      this.onDateChange()
+    })
+
     this.getCarById()
   }
 
+
   bookACar(data: any) {
-    this.isSpinning = true
+    this.isSpinning = true;
 
     let bookACarDto = {
-      fromDate: Date.now(),
-      toDate: Date.now() + 1000 * 60 * 60 * 24 * 7,
+      fromDate: data.fromDate,
+      toDate: data.toDate,
       userId: StorageService.getUserId(),
-      carId: this.carId
-    }
-
+      carId: this.carId,
+      days: this.numberOfDays
+    };
     this.service.bookACar(bookACarDto).subscribe(
-      res => {
-        this.isSpinning = false
+      (res) => {
+        this.isSpinning = false;
+        this.message.success('Car booked successfully');
 
-        this.message.success('Car booked successfully')
-        this.router.navigateByUrl('/customer/dashboard')
+        // Mise à jour de bookingDetails
+      this.bookingDetails = {
+        carName: this.car.brand + ' - ' + this.car.model,
+        fromDate: data.fromDate,
+        toDate: data.toDate,
+        days: this.numberOfDays,
+        pricePerDay: this.car.pricePerDay,
+        price: this.car.pricePerDay * this.numberOfDays,
+        id: res.id
+      };
+
       },
-
-      error => {
-        this.isSpinning = false
-        this.message.error('Error occurred while booking the car')
+      (error) => {
+        this.isSpinning = false;
+        this.message.error('Error occurred while booking the car');
       }
-    )
+    );
+  }
+
+
+  initiatePayment(bookingDetails: any) {
+    const paymentDetails = {
+      amount: bookingDetails.price,
+      days: bookingDetails.days,
+      pricePerDay: bookingDetails.pricePerDay,
+      bookingId: bookingDetails.id
+    };
+
+    // Passe les détails de la réservation vers la page de paiement
+    this.router.navigate(['/payment'], { queryParams: bookingDetails });
+  }
+
+
+
+  // Method to calculate the number of days between fromDate and toDate
+  onDateChange() {
+    const fromDate = this.validateForm.get('fromDate')?.value;
+    const toDate = this.validateForm.get('toDate')?.value;
+
+    if (fromDate && toDate) {
+      const date1 = new Date(fromDate);
+      const date2 = new Date(toDate);
+      const difference = (date2.getTime() - date1.getTime()) / (1000 * 3600 * 24);
+      this.numberOfDays = Math.max(difference, 0); // Avoid negative days
+    } else {
+      this.numberOfDays = 0;
+    }
   }
 
   private getCarById() {

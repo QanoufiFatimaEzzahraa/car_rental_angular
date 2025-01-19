@@ -1,7 +1,7 @@
 <div style="margin-top: 50px; padding: 40px;">
   <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
     <div class="flex flex-col items-center">
-      <h1 class="text-xl font-bold text-gray-800 mb-4 text-center">Post Car</h1>
+      <h1 class="text-xl font-bold text-gray-800 mb-4 text-center">Search for a Car</h1>
 
       <form nz-form [formGroup]="searchCarForm">
         <div>
@@ -17,8 +17,8 @@
         <div>
           <nz-form-item>
             <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
-              <nz-select formControlName="type" nzShowSearch nzAllowClear nzPlaceHolder="Select a Type">
-                <nz-option *ngFor="let type of listOfType" nzLabel="{{type}}" nzValue="{{type}}"></nz-option>
+              <nz-select formControlName="model" nzShowSearch nzAllowClear nzPlaceHolder="Select a Model">
+                <nz-option *ngFor="let model of listOfModels" nzLabel="{{model}}" nzValue="{{model}}"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
@@ -27,23 +27,14 @@
         <div>
           <nz-form-item>
             <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
-              <nz-select formControlName="transmission" nzShowSearch nzAllowClear nzPlaceHolder="Select a Transmission">
-                <nz-option *ngFor="let transmission of listOfTransmission" nzLabel="{{transmission}}"
-                  nzValue="{{transmission}}"></nz-option>
+              <nz-select formControlName="pricePerDay" nzShowSearch nzAllowClear nzPlaceHolder="Select Price per Day">
+                <nz-option *ngFor="let price of listOfPricePerDay" nzLabel="{{price}}" nzValue="{{price}}"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
         </div>
 
-        <div>
-          <nz-form-item>
-            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
-              <nz-select formControlName="color" nzShowSearch nzAllowClear nzPlaceHolder="Select a Color">
-                <nz-option *ngFor="let color of listOfColor" nzLabel="{{color}}" nzValue="{{color}}"></nz-option>
-              </nz-select>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+  
 
         <button nz-button class="login-form-button login-form-margin w-full" [nzType]="'primary'" (click)="searchCar()">
           Search
@@ -62,13 +53,11 @@
         <img [src]="car.processedImage" alt="car" class="w-full h-32 object-cover object-center">
 
         <div class="mt-4">
-          <h2 class="text-gray-900 title-font text-lg font-medium">{{car.name}}</h2>
           <p class="text-gray-500">{{car.brand}}</p>
-          <p class="text-gray-500">{{car.type}}</p>
-          <p class="text-gray-500">{{car.transmission}}</p>
-          <p class="text-gray-500">{{car.color}}</p>
-          <p class="text-gray-500">{{car.price}}</p>
+          <p class="text-gray-500">{{car.model}}</p>
+          <p class="text-gray-500">{{car.pricePerDay}} €</p>
         </div>
       </div>
     </div>
   </div>
+</div>
